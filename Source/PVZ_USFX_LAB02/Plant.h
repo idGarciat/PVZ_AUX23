@@ -28,8 +28,6 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 
-	FTimerHandle temporizadordisparo;
-
 	UPROPERTY(VisibleAnywhere)
 	int energia;
 

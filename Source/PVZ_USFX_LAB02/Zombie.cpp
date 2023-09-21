@@ -6,7 +6,7 @@
 // Sets default values
 AZombie::AZombie()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	MeshZombie = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Zombie Mesh"));
@@ -42,7 +42,7 @@ AZombie::AZombie()
 void AZombie::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 
 	UWorld* const World = GetWorld();
 

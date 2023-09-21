@@ -28,6 +28,8 @@ APlanta_Ataque::APlanta_Ataque()
 	GunOffset = FVector(40.f, 40.f, 40.f);
 	FireRate = 0.2f;
 
+	energia = 150;
+
 
 }
 

@@ -14,6 +14,7 @@
 #include "Controlador.h"
 
 #include "Planta_Ataque.h"
+#include "Lanza_Guisantes.h"
 
 APVZ_USFX_LAB02GameModeBase::APVZ_USFX_LAB02GameModeBase()
 {
@@ -24,7 +25,8 @@ APVZ_USFX_LAB02GameModeBase::APVZ_USFX_LAB02GameModeBase()
 	PlayerControllerClass = AControlador::StaticClass();
 
 
-	contador = FVector(0,0,0);
+
+	contador = FVector(0, 0, 0);
 	localizacion = FVector(400.0, 200.0, 100.0);
 	contador2 = 0;
 
@@ -56,7 +58,7 @@ void APVZ_USFX_LAB02GameModeBase::BeginPlay()
 	//ASol* Sol2 = GetWorld()->SpawnActor<ASol>(ASol::StaticClass(), FVector(-450, -50, 160), FRotator::ZeroRotator);
 
 	//Definiendo la posición de los zombies
-	FVector SpawnLocationZombie = FVector(-800.0f, 400.0f, 160.0f);
+	FVector SpawnLocationZombie = FVector(-800.0f, 400.0f, 22.0f);
 
 	// Genera 5 zombies
 	for (int i = 0; i < 5; i++) {
@@ -67,7 +69,7 @@ void APVZ_USFX_LAB02GameModeBase::BeginPlay()
 
 		NuevoZombie = GetWorld()->SpawnActor<AZombie>(AZombie::StaticClass(), SpawnLocationZombie, FRotator::ZeroRotator);
 
-		NuevoZombie->Velocidad = FMath::FRandRange(0.1,0.5);
+		NuevoZombie->Velocidad = FMath::FRandRange(0.1, 0.2);
 
 		Zombies.Add(NuevoZombie);
 
@@ -93,27 +95,26 @@ void APVZ_USFX_LAB02GameModeBase::BeginPlay()
 			SpawnLocationPlantTemp.Y += 80;
 
 			// Genera un nombre para la planta
-			NombrePlanta = FString::Printf(TEXT("Planta%d_%d"), i + 1, j + 1); // Cambio en la generación del nombre
+			NombrePlanta = FString::Printf(TEXT("Planta %d_%d"), i + 1, j + 1); // Cambio en la generación del nombre
 
 			// Crea una nueva instancia de APlant en el mundo
-			NuevaPlanta = GetWorld()->SpawnActor<APlanta_Ataque>(APlanta_Ataque::StaticClass(), SpawnLocationPlantTemp, FRotator::ZeroRotator);
-			
+			NuevaPlantaGuisante = GetWorld()->SpawnActor<ALanza_Guisantes>(ALanza_Guisantes::StaticClass(), SpawnLocationPlantTemp, FRotator::ZeroRotator);
 
 			// Asigna un valor aleatorio a la energía de la planta
-			NuevaPlanta->energia = FMath::FRandRange(0.0, 10.0);
-
+			NuevaPlantaGuisante->energia = FMath::FRandRange(0.0, 10.0);
 
 			// Muestra un mensaje en la consola
 			//UE_LOG(LogTemp, Warning, TEXT("Energía de %s: %i"), *NombrePlanta, NuevaPlanta->energia);
 
 			// Muestra un mensaje en la pantalla
-			GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Energía de %s: %i"), *NombrePlanta, NuevaPlanta->energia));
-			UE_LOG(LogTemp, Warning, TEXT("Energía de %s: %i"), *NombrePlanta, NuevaPlanta->energia);
+			GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Energía de %s: %i"), *NombrePlanta, NuevaPlantaGuisante->energia));
+
+			UE_LOG(LogTemp, Warning, TEXT("Energía de %s: %i"), *NombrePlanta, NuevaPlantaGuisante->energia);
 
 			// Agrega la planta al contenedor de plantas
-			Plantas.Add(NombrePlanta, NuevaPlanta);
+			Plantas.Add(NombrePlanta, NuevaPlantaGuisante);
 
-			Plantas2.Add(NuevaPlanta);
+			Plantas2.Add(NuevaPlantaGuisante);
 
 
 			// Coloca la planta en una posición diferente
@@ -197,7 +198,7 @@ void APVZ_USFX_LAB02GameModeBase::aumentovelocidad()
 
 	for (int i = 0; i < Zombies.Num(); i++)
 	{
-		Zombies[i]->Velocidad =+ FMath::FRandRange(0,0.2);
+		Zombies[i]->Velocidad = +FMath::FRandRange(0, 0.2);
 	}
 
 }
@@ -206,15 +207,24 @@ void APVZ_USFX_LAB02GameModeBase::aumentovelocidad()
 void APVZ_USFX_LAB02GameModeBase::MostrarEnergiaDePlantas()
 {
 
-	NombrePlanta = FString::Printf(TEXT("Planta%d_%d"), FilaActual, ColumnaActual);
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Este es un mensaje")));
 
-	APlanta_Ataque* Planta = Plantas.FindRef(NombrePlanta);
+	NombrePlanta = FString::Printf(TEXT("Planta %d_%d"), FilaActual, ColumnaActual);
+
+	APlant* Planta = Plantas.FindRef(NombrePlanta);
 
 	if (Planta)
 	{
 		FString Mensaje = FString::Printf(TEXT("%s: Energía %i"), *NombrePlanta, Planta->energia);
+
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, Mensaje);
+
 		UE_LOG(LogTemp, Warning, TEXT("%s"), *Mensaje);
+
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("No se encontró la planta")));
 
 	}
 

@@ -7,16 +7,17 @@
 #include "PVZ_USFX_LAB02GameModeBase.generated.h"
 
 /**
- * 
+ *
  */
 class AZombie;
 class APlant;
 class APlanta_Ataque;
+class ALanza_Guisantes;
 UCLASS()
 class PVZ_USFX_LAB02_API APVZ_USFX_LAB02GameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-	
+
 
 public:
 	// Sets default values for this actor's properties
@@ -45,12 +46,14 @@ public:
 
 	// Declarar un vector de objetos
 	TArray<AZombie*> Zombies;
-	
 
-	// Declarar un mapa de objetos
-	TMap<FString, APlanta_Ataque*> Plantas;
 
-	TArray<APlanta_Ataque*> Plantas2;
+	// Declarar un contenedor tipo TMap de objetos
+	TMap<FString, APlant*> Plantas;
+
+	// Declarar un vector de objetos
+
+	TArray<APlant*> Plantas2;
 
 	float TiempoTranscurrido;
 
@@ -65,7 +68,7 @@ public:
 
 	FString NombrePlanta;
 
-	APlanta_Ataque* NuevaPlanta;
+	ALanza_Guisantes* NuevaPlantaGuisante;
 
 
 
