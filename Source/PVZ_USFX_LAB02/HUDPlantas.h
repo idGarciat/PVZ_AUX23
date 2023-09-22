@@ -7,11 +7,21 @@
 #include "HUDPlantas.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PVZ_USFX_LAB02_API AHUDPlantas : public AHUD
 {
 	GENERATED_BODY()
-	
+
+public:
+
+	TSharedPtr<class SSeleccion_plantas> WidgetSeleccion;
+	TSharedPtr<class SWidget> WidgetActivo;
+
+	virtual void BeginPlay() override;
+
+	void QuitarHud();
+
+
 };

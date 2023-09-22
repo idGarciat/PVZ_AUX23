@@ -23,7 +23,14 @@ public:
 	/** Constructs this widget with InArgs */
 	void Construct(const FArguments& InArgs);
 
+	TWeakObjectPtr<class AHUDPlantas> OwningHUD;
+
+	virtual bool SupportsKeyboardFocus() const override { return true; };
 
 
+	FReply OnMouseButtonDown(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent) override;
 
+	FReply OnClicked();
+
+	FReply QuitarMenu();
 };

@@ -12,6 +12,8 @@
 
 #include "Jugador.h"
 #include "Controlador.h"
+#include "HUDPlantas.h"
+
 
 #include "Planta_Ataque.h"
 #include "Lanza_Guisantes.h"
@@ -23,7 +25,7 @@ APVZ_USFX_LAB02GameModeBase::APVZ_USFX_LAB02GameModeBase()
 
 	DefaultPawnClass = AJugador::StaticClass();//Definiendo el Pawn
 	PlayerControllerClass = AControlador::StaticClass();
-
+	HUDClass = AHUDPlantas::StaticClass();
 
 
 	contador = FVector(0, 0, 0);
@@ -207,7 +209,7 @@ void APVZ_USFX_LAB02GameModeBase::aumentovelocidad()
 void APVZ_USFX_LAB02GameModeBase::MostrarEnergiaDePlantas()
 {
 
-	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Este es un mensaje")));
+	//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Este es un mensaje")));
 
 	NombrePlanta = FString::Printf(TEXT("Planta %d_%d"), FilaActual, ColumnaActual);
 
