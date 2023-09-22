@@ -4,14 +4,17 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+
+#include "Components/BoxComponent.h"
+
 #include "Plant.generated.h"
 
 UCLASS()
 class PVZ_USFX_LAB02_API APlant : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	APlant();
 
@@ -23,15 +26,20 @@ protected:
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* MeshPlanta;
 
-public:	
+
+
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
 
 
 	UPROPERTY(VisibleAnywhere)
 	int energia;
 
+	UFUNCTION()
+	virtual void NotifyHit(class UPrimitiveComponent* MyComp, AActor* Other, class UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal,
+		FVector NormalImpulse, const FHitResult& Hit)override;//esta funcion nos notifica cada golpe que de la clase.
 
-	//void EliminarZombie(class APVZ_USFX_LAB02GameModeBase* GameModeBasePVZ);
 
 };

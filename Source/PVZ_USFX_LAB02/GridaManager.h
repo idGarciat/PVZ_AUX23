@@ -55,6 +55,7 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "DisposicionGrilla")
 	TSubclassOf<AGrilla> GrillaAgua;
 
+
 	TSubclassOf<AGrilla> GrillaSpawneada;
 
 	float PosInicialX;

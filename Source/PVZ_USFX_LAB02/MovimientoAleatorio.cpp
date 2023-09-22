@@ -24,7 +24,7 @@ void UMovimientoAleatorio::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
-	
+
 
 }
 
@@ -39,14 +39,16 @@ void UMovimientoAleatorio::TickComponent(float DeltaTime, ELevelTick TickType, F
 	if (Parent)
 	{
 		// Movimiento aleatorio
-		auto NewPos = Parent->GetActorLocation() +FVector(FMath::FRandRange(-1, 1) *RadioMovimiento,FMath::FRandRange(-1, 1) *RadioMovimiento,0);
+		auto NewPos = Parent->GetActorLocation() + FVector(FMath::FRandRange(-1, 1) * RadioMovimiento, FMath::FRandRange(-1, 1) * RadioMovimiento, 0);
 		// Actualiza la ubicacion
 		Parent->SetActorLocation(NewPos);
 
 		// Rotación aleatoria
-		auto NewRot = Parent->GetActorRotation() + FRotator(FMath::FRandRange(-1, 1) * RadioMovimiento, FMath::FRandRange(-1, 1) * RadioMovimiento, FMath::FRandRange(-1, 1) * RadioMovimiento);
+
+		//auto NewRot = Parent->GetActorRotation() + FRotator(FMath::FRandRange(-1, 1) * RadioMovimiento, FMath::FRandRange(-1, 1) * RadioMovimiento, FMath::FRandRange(-1, 1) * RadioMovimiento);
+
 		//Actualiza la rotacion	
-		Parent->SetActorRotation(NewRot);
+		//Parent->SetActorRotation(NewRot);
 	}
 
 

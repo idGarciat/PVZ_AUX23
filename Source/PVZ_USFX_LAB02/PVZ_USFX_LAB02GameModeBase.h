@@ -10,6 +10,7 @@
  *
  */
 class AZombie;
+class AZombieComun;
 class APlant;
 class APlanta_Ataque;
 class ALanza_Guisantes;
@@ -22,6 +23,8 @@ class PVZ_USFX_LAB02_API APVZ_USFX_LAB02GameModeBase : public AGameModeBase
 public:
 	// Sets default values for this actor's properties
 	APVZ_USFX_LAB02GameModeBase();
+
+
 
 protected:
 	// Called when the game starts or when spawned
@@ -61,7 +64,8 @@ public:
 
 	void MostrarEnergiaDePlantas();
 
-	AZombie* NuevoZombie;
+
+	AZombieComun* NuevoZombie;
 
 
 	FTimerHandle Temporizador2;

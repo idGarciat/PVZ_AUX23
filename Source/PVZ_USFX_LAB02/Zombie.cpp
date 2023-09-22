@@ -1,8 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Zombie.h"
 
+#include "Components/BoxComponent.h"
+#include "Components/StaticMeshComponent.h"
+#include "Components/CapsuleComponent.h"
+
+#include "Plant.h"
+#include "Proyectil.h"
 // Sets default values
 AZombie::AZombie()
 {
@@ -10,9 +15,12 @@ AZombie::AZombie()
 	PrimaryActorTick.bCanEverTick = true;
 
 	MeshZombie = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Zombie Mesh"));
-	MeshZombie->SetCollisionProfileName(UCollisionProfile::BlockAll_ProfileName);
-	MeshZombie->SetSimulatePhysics(true);
-	MeshZombie->OnComponentBeginOverlap.AddDynamic(this, &AZombie::OnOverlapBeginFunction);		// set up a notification for when this component hits something
+	//MeshZombie->SetCollisionProfileName(UCollisionProfile::BlockAll_ProfileName);
+	MeshZombie->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+
+	//MeshZombie->SetSimulatePhysics(true);
+	MeshZombie->SetCollisionObjectType(ECollisionChannel::ECC_Pawn);
+	MeshZombie->SetupAttachment(RootComponent);
 
 	RootComponent = MeshZombie;
 
@@ -29,10 +37,13 @@ AZombie::AZombie()
 	MeshZombie->SetRelativeScale3D(FVector(1.f, 1.f, 1.f));
 
 
-	energia = 100;
+	energia = 200;
 	Velocidad = 0.2f;
 
+	Tags.Add(TEXT("Zombie"));
+
 	//InitialLifeSpan = 5; //Para que el actor se destruya
+
 
 
 
@@ -51,13 +62,7 @@ void AZombie::BeginPlay()
 
 }
 
-void AZombie::OnOverlapBeginFunction(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
-{
-}
 
-void AZombie::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
-{
-}
 
 // Called every frame
 void AZombie::Tick(float DeltaTime)
@@ -70,6 +75,9 @@ void AZombie::Tick(float DeltaTime)
 	// Calcula la distancia de al objetivo
 	float DistanciaAlObjetivo = FVector::Dist(LocalizacionObjetivo, this->GetActorLocation());
 
+
+
+
 	// Calcula el desplazamiento en este frame
 	float DeltaMove = Velocidad * GetWorld()->DeltaTimeSeconds;
 
@@ -77,6 +85,7 @@ void AZombie::Tick(float DeltaTime)
 	{
 		// Si el desplazamiento excede la distancia al objetivo, mueve directamente al objetivo
 		this->SetActorLocation(LocalizacionObjetivo);
+		//this->SetActorRotation(NewRotation);
 	}
 	else
 	{
@@ -86,9 +95,13 @@ void AZombie::Tick(float DeltaTime)
 	}
 
 
+
 	//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Este es un mensaje")));
 
+
+
 }
+
 
 void AZombie::morir()
 {
@@ -96,4 +109,24 @@ void AZombie::morir()
 	this->Destroy();		//El actor también se destruye
 	SetActorHiddenInGame(true);	//El actor sólo desaparece
 }
+
+
+
+void AZombie::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit)
+{
+	//Destroy();
+	AProyectil* proyectil = Cast<AProyectil>(Other);
+
+	if (Other != proyectil) {
+		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Este es un mensaje")));
+		Other->Destroy();
+	}
+
+	/*GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Este es un mensaje")));
+	Other->Destroy();*/
+}
+
+
+
+
 

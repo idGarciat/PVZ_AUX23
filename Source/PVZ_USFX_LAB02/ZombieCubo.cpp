@@ -1,10 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Repetidora.h"
+#include "ZombieCubo.h"
 
-ARepetidora::ARepetidora()
-{
-	energia = 150;
-
-}

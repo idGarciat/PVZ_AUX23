@@ -7,7 +7,7 @@
 #include "Planta_Ataque.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PVZ_USFX_LAB02_API APlanta_Ataque : public APlant
@@ -21,7 +21,7 @@ public:
 
 	void AtaquePlanta();
 
-	public:
+public:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 protected:
@@ -51,6 +51,9 @@ protected:
 
 	/** Handle for efficient management of ShotTimerExpired timer */
 	FTimerHandle TimerHandle_ShotTimerExpired;
+
+	int CantidadDisparos;
+	int contador;
 
 
 };

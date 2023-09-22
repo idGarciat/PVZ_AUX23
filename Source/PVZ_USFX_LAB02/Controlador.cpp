@@ -6,9 +6,9 @@
 AControlador::AControlador()
 {
 	bShowMouseCursor = true;
+
 	bEnableClickEvents = true;
 
 	DefaultMouseCursor = EMouseCursor::Default;
-
 
 }

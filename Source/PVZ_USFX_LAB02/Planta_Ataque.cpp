@@ -8,7 +8,10 @@
 #include "Components/BoxComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
+
 #include "Proyectil.h"
+#include "Proyectil_Fuego.h"
+
 #include "TimerManager.h"
 
 APlanta_Ataque::APlanta_Ataque()
@@ -19,18 +22,23 @@ APlanta_Ataque::APlanta_Ataque()
 
 
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> PlantAtaqueMesh(TEXT("StaticMesh'/Game/StarterContent/Shapes/Shape_NarrowCapsule.Shape_NarrowCapsule'"));
-	//MeshPlanta->SetStaticMesh(PlantAtaqueMesh.Object);
+
+	MeshPlanta->SetStaticMesh(PlantAtaqueMesh.Object);
+
 	MeshPlanta->SetRelativeScale3D(FVector(0.5f, 0.5f, 1.5f));
 
 
 
 	bCanFire = true;
-	GunOffset = FVector(40.f, 40.f, 40.f);
-	FireRate = 0.2f;
 
-	energia = 150;
+	GunOffset = FVector(40.f, 40.f, 10.f);
 
+	FireRate = 0.5f;
 
+	energia = 200;
+
+	CantidadDisparos = 1;
+	contador = 1;
 }
 
 
@@ -40,15 +48,14 @@ void APlanta_Ataque::BeginPlay()
 
 
 	UWorld* const World = GetWorld();
-	GetWorldTimerManager().SetTimer(ManejoTiempo, this, &APlanta_Ataque::AtaquePlanta, 01.0f, true, 0.0f);
+
+	GetWorldTimerManager().SetTimer(ManejoTiempo, this, &APlanta_Ataque::AtaquePlanta, FireRate, true, 1);
 
 }
 
 void APlanta_Ataque::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-
 
 }
 
@@ -76,11 +83,11 @@ void APlanta_Ataque::FireShot(FVector FireDirection)
 			if (World != nullptr)
 			{
 				// spawn the projectile
-				World->SpawnActor<AProyectil>(SpawnLocation, FireRotation);
+				World->SpawnActor<AProyectil_Fuego>(SpawnLocation, FireRotation);
 			}
 
-			bCanFire = false;
-			World->GetTimerManager().SetTimer(TimerHandle_ShotTimerExpired, this, &APlanta_Ataque::ShotTimerExpired, FireRate);
+			//bCanFire = false;
+			//World->GetTimerManager().SetTimer(TimerHandle_ShotTimerExpired, this, &APlanta_Ataque::ShotTimerExpired, FireRate);
 
 		}
 	}
@@ -89,5 +96,4 @@ void APlanta_Ataque::FireShot(FVector FireDirection)
 void APlanta_Ataque::ShotTimerExpired()
 {
 	bCanFire = true;
-
 }

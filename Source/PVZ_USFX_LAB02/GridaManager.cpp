@@ -19,6 +19,7 @@ AGridaManager::AGridaManager()
 	EspaciadoGrillaY = 100;
 
 	GrillaPasto = AGrilla_Pasto::StaticClass();
+
 	GrillaAgua = AGrillaAgua::StaticClass();
 
 
@@ -65,7 +66,7 @@ void AGridaManager::BeginPlay()
 			//}
 
 
-			// Intercalado vertical
+			////Intercalado vertical
 			//if (y % 2 == 0)
 			//{
 			//	GrillaSpawneada = GrillaAgua;

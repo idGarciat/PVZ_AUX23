@@ -11,7 +11,8 @@ void SSeleccion_plantas::Construct(const FArguments& InArgs)
 	OwningHUD = InArgs._OwningHUD;
 
 	FMargin ContentPadding = FMargin(30, 20);
-	FMargin ButtonPadding = FMargin(200, 20);
+
+	FMargin ButtonPadding = FMargin(200, 20, 10, 5);
 
 	const FText TitleText = FText::FromString("Seleccion \n de \nplantas");
 	const FText ButtonText = FText::FromString("Cerrar HUD");
@@ -19,7 +20,7 @@ void SSeleccion_plantas::Construct(const FArguments& InArgs)
 	FSlateFontInfo ButtonTextStyle = FCoreStyle::Get().GetFontStyle("EmbossedText");
 	ButtonTextStyle.Size = 25.f;
 
-	FSlateFontInfo TitleTextStyle = ButtonTextStyle;
+	FSlateFontInfo TitleTextStyle = FCoreStyle::Get().GetFontStyle("EmbossedText");
 	TitleTextStyle.Size = 30.f;
 
 	ChildSlot
@@ -66,11 +67,11 @@ void SSeleccion_plantas::Construct(const FArguments& InArgs)
 												+ SHorizontalBox::Slot()
 												[
 													SNew(SButton)
-														.OnClicked(this, &SSeleccion_plantas::OnClicked)
+														.OnClicked(this, &SSeleccion_plantas::SpawnPLanta)
 														[
 															SNew(STextBlock)
 																.Font(ButtonTextStyle)
-																.Text(FText::FromString("Planta 2"))
+																.Text(FText::FromString("Spawn planta"))
 																.Justification(ETextJustify::Center)
 														]
 												]
@@ -109,6 +110,7 @@ void SSeleccion_plantas::Construct(const FArguments& InArgs)
 										.Font(TitleTextStyle)
 										.Text(TitleText)
 								]
+
 						]
 				]
 
@@ -134,10 +136,10 @@ void SSeleccion_plantas::Construct(const FArguments& InArgs)
 
 }
 
-FReply SSeleccion_plantas::OnMouseButtonDown(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent)
-{
-	return FReply::Handled();
-}
+//FReply SSeleccion_plantas::OnMouseButtonDown(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent)
+//{
+//	return FReply::Handled();
+//}
 
 FReply SSeleccion_plantas::OnClicked()
 {
@@ -145,12 +147,25 @@ FReply SSeleccion_plantas::OnClicked()
 	return FReply::Handled();
 }
 
+
 FReply SSeleccion_plantas::QuitarMenu()
 {
 	if (OwningHUD.IsValid())
 	{
 		OwningHUD->QuitarHud();
 	}
+
 	return FReply::Handled();
 
+}
+
+FReply SSeleccion_plantas::SpawnPLanta()
+{
+
+	if (OwningHUD.IsValid())
+	{
+		OwningHUD->SpawnPlanta();
+	}
+
+	return FReply::Handled();
 }

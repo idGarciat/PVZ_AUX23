@@ -5,7 +5,7 @@
 #include "Spawns.h"
 #include "Zombie.h"
 #include "Plant.h"
-#include "Sol.h"
+//#include "Sol.h"
 #include "Math/UnrealMathUtility.h"
 #include "Engine/Engine.h"
 #include "TimerManager.h"
@@ -18,14 +18,21 @@
 #include "Planta_Ataque.h"
 #include "Lanza_Guisantes.h"
 
+#include "ZombieComun.h"
+#include "ZombieCono.h"
+#include "ZombieCubo.h"
+
 APVZ_USFX_LAB02GameModeBase::APVZ_USFX_LAB02GameModeBase()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-
-	DefaultPawnClass = AJugador::StaticClass();//Definiendo el Pawn
+	//Definiendo el Pawn o Peon
+	DefaultPawnClass = AJugador::StaticClass();
+	//Definiendo el Controlador
 	PlayerControllerClass = AControlador::StaticClass();
+	//Definiendo el HUD
 	HUDClass = AHUDPlantas::StaticClass();
+
 
 
 	contador = FVector(0, 0, 0);
@@ -60,33 +67,36 @@ void APVZ_USFX_LAB02GameModeBase::BeginPlay()
 	//ASol* Sol2 = GetWorld()->SpawnActor<ASol>(ASol::StaticClass(), FVector(-450, -50, 160), FRotator::ZeroRotator);
 
 	//Definiendo la posición de los zombies
-	FVector SpawnLocationZombie = FVector(-800.0f, 400.0f, 22.0f);
+	FVector SpawnLocationZombie = FVector(-950.0f, 400.0f, 22.0f);
 
 	// Genera 5 zombies
 	for (int i = 0; i < 5; i++) {
 		// Define una posición temporal para el zombie en X
-		SpawnLocationZombie.X += 100;
+		SpawnLocationZombie.X += 150;
 		// Aparicion de los zombies
 
 
-		NuevoZombie = GetWorld()->SpawnActor<AZombie>(AZombie::StaticClass(), SpawnLocationZombie, FRotator::ZeroRotator);
+		NuevoZombie = GetWorld()->SpawnActor<AZombieComun>(AZombieComun::StaticClass(), SpawnLocationZombie, FRotator::ZeroRotator);
 
-		NuevoZombie->Velocidad = FMath::FRandRange(0.1, 0.2);
+		NuevoZombie->Velocidad = FMath::FRandRange(0.1, 0.1);
 
 		Zombies.Add(NuevoZombie);
 
 	}
 
 
+
+
+
 	//Definiendo la posición de las plantas
-	FVector SpawnLocationPlant = FVector(-800.0f, -600.0f, 22.0f);
+	FVector SpawnLocationPlant = FVector(-950.0f, -600.0f, 22.0f);
 	FVector SpawnLocationPlantTemp = SpawnLocationPlant;
 
 	// Genera 5 plantas
 	for (int i = 0; i < 5; i++)
 	{
 		//Define una posicion temporal para la planta en X
-		SpawnLocationPlantTemp.X += 100;
+		SpawnLocationPlantTemp.X += 150;
 
 
 
@@ -205,7 +215,6 @@ void APVZ_USFX_LAB02GameModeBase::aumentovelocidad()
 
 }
 
-
 void APVZ_USFX_LAB02GameModeBase::MostrarEnergiaDePlantas()
 {
 
@@ -217,7 +226,7 @@ void APVZ_USFX_LAB02GameModeBase::MostrarEnergiaDePlantas()
 
 	if (Planta)
 	{
-		FString Mensaje = FString::Printf(TEXT("%s: Energía %i"), *NombrePlanta, Planta->energia);
+		FString Mensaje = FString::Printf(TEXT("%s: Energia %i"), *NombrePlanta, Planta->energia);
 
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, Mensaje);
 
@@ -244,3 +253,5 @@ void APVZ_USFX_LAB02GameModeBase::MostrarEnergiaDePlantas()
 	}
 
 }
+
+

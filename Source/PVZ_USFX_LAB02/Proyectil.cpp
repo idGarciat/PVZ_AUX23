@@ -7,11 +7,12 @@
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Engine/StaticMesh.h"
+#include "Zombie.h"
 
 // Sets default values
 AProyectil::AProyectil()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	// Static reference to the mesh to use for the projectile
@@ -38,7 +39,8 @@ AProyectil::AProyectil()
 
 	InitialLifeSpan = 3.0f;
 
-	
+
+
 
 }
 
@@ -46,7 +48,7 @@ AProyectil::AProyectil()
 void AProyectil::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 // Called every frame
@@ -58,6 +60,16 @@ void AProyectil::Tick(float DeltaTime)
 
 void AProyectil::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
+	AZombie* Zombie = Cast<AZombie>(OtherActor);
+
+	if (OtherActor->ActorHasTag("Zombie")) {
+		Zombie->energia -= 10;
+		//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Este es un mensaje %i"), Zombie->energia));
+		if (Zombie->energia <= 0) {
+			Zombie->Destroy();
+		};
+	}
+
 	Destroy();
 
 

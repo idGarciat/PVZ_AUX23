@@ -3,29 +3,21 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
+#include "Plant.h"
+#include "Girasol.generated.h"
 
-#include "MovimientoAleatorio.h"
-#include "Sol.generated.h"
-
-
+/**
+ * 
+ */
 UCLASS()
-class PVZ_USFX_LAB02_API ASol : public AActor
+class PVZ_USFX_LAB02_API AGirasol : public APlant
 {
 	GENERATED_BODY()
 
+
 public:
 	// Sets default values for this actor's properties
-	ASol();
-
-	UPROPERTY(EditAnywhere)
-	UStaticMeshComponent* MeshSol;
-
-
-	UPROPERTY(EditAnywhere)
-	UMovimientoAleatorio* MovimientoAleatorio;
-
-
+	AGirasol();
 
 protected:
 	// Called when the game starts or when spawned
@@ -34,6 +26,9 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	
 
+	void SpawnSoles();
 
+	FTimerHandle Temporizador;
 };
