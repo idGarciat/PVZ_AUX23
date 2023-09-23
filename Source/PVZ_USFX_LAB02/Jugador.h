@@ -7,25 +7,37 @@
 #include "GameFramework/Pawn.h"
 #include "Jugador.generated.h"
 
-UCLASS()
+UCLASS(config = Game)
 class PVZ_USFX_LAB02_API AJugador : public APawn
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this pawn's properties
-	AJugador();
+	//AJugador();
 
 protected:
+	AJugador(const FObjectInitializer& ObjectInitializer);
+
+	virtual void CalcCamera(float DeltaTime, struct FMinimalViewInfo& OutResult) override;
+
+
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+
+
+	void TriggerClick();
+
+	void TraceForBlock(const FVector& Start, const FVector& End, bool bDrawDebugHelpers);
 
 
 	static const FName Spawns;
@@ -35,6 +47,7 @@ public:
 	int contador;
 
 	FVector Localizacion;
+
 
 
 
@@ -55,5 +68,9 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 
 
+	FVector WorldLocation, WorldDirection;
+	APlayerController* PlayerController;
 
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite)
+	class AGrilla* GrillaActual;
 };

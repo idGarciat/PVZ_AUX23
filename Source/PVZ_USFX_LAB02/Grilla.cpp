@@ -4,7 +4,7 @@
 #include "Grilla.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Materials/Material.h"
-
+#include "Girasol.h"
 
 
 
@@ -42,5 +42,51 @@ void AGrilla::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void AGrilla::HandleClicked()
+{
+	// Check we are not already active
+	if (!bIsActive)
+	{
+		bIsActive = true;
+
+		//localizacion actual del actor
+		FVector Localizacion = GetActorLocation();
+
+		// Change material
+		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Grilla ocupada: %s"), *GetName()));
+		AGirasol* Girasol = GetWorld()->SpawnActor<AGirasol>(AGirasol::StaticClass(), FVector(Localizacion.X, Localizacion.Y, Localizacion.Z + 5), FRotator::ZeroRotator);
+
+		// Tell the Grid
+		if (OwningGrid != nullptr)
+		{
+			//OwningGrid->AddScore();
+
+		}
+	}
+}
+
+
+void AGrilla::Highlight(bool bOn)
+{
+	// Do not highlight if the block has already been activated.
+	if (bIsActive)
+	{
+		return;
+	}
+
+	if (bOn)
+	{
+		//BlockMesh->SetMaterial(0, BaseMaterial);
+		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Grilla ocupada")));
+
+	}
+	else
+	{
+		//BlockMesh->SetMaterial(0, BlueMaterial);
+		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Grilla no ocupada")));
+
+	}
 }
 

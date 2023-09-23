@@ -145,7 +145,7 @@ void APVZ_USFX_LAB02GameModeBase::BeginPlay()
 
 	//World->GetTimerManager().SetTimer(Temporizador, this, &APVZ_USFX_LAB02GameModeBase::aumentovelocidad, 1, true);
 
-	World->GetTimerManager().SetTimer(Temporizador2, this, &APVZ_USFX_LAB02GameModeBase::MostrarEnergiaDePlantas, 1.f, true);
+	//World->GetTimerManager().SetTimer(Temporizador2, this, &APVZ_USFX_LAB02GameModeBase::MostrarEnergiaDePlantas, 1.f, true);
 
 
 }

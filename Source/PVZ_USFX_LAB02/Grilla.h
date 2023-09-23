@@ -54,4 +54,14 @@ public:
 	AGrilla();
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
+
+	void HandleClicked();
+
+
+	void Highlight(bool bOn);
+	bool bIsActive;
+
+	UPROPERTY()
+	class AGridaManager* OwningGrid;
+
 };

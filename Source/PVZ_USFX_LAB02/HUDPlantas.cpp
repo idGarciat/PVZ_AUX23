@@ -49,3 +49,13 @@ void AHUDPlantas::SpawnPlanta()
 	AGirasol* Girasol = GetWorld()->SpawnActor<AGirasol>(AGirasol::StaticClass(), FVector(localizacionX, localizacionY, 20), FRotator::ZeroRotator);
 
 }
+
+void AHUDPlantas::CambioPlanta1()
+{
+
+}
+
+void AHUDPlantas::CambioPlanta2()
+{
+
+}

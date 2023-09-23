@@ -8,7 +8,9 @@ AControlador::AControlador()
 	bShowMouseCursor = true;
 
 	bEnableClickEvents = true;
+	bEnableTouchEvents = true;
 
 	DefaultMouseCursor = EMouseCursor::Default;
 
+	bEnableMouseOverEvents = true;
 }

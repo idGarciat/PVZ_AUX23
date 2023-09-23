@@ -120,6 +120,8 @@ void AZombie::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveCo
 	if (Other != proyectil) {
 		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Este es un mensaje")));
 		Other->Destroy();
+		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Nombre del otro actor: %s"), *Other->GetName()));
+
 	}
 
 	/*GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Este es un mensaje")));

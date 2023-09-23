@@ -109,3 +109,12 @@ void AGridaManager::Tick(float DeltaTime)
 
 }
 
+void AGridaManager::AddScore()
+{
+	// Increment score
+	//Score++;
+
+	// Update text
+	//ScoreText->SetText(FText::Format(LOCTEXT("ScoreFmt", "Score: {0}"), FText::AsNumber(Score)));
+}
+

@@ -28,5 +28,8 @@ public:
 
 	void SpawnPlanta();
 
+	void CambioPlanta1();
+
+	void CambioPlanta2();
 
 };
