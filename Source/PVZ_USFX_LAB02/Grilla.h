@@ -15,6 +15,7 @@ enum class EHexTileType : uint8
 	INVALIDO,
 	PASTO,
 	AGUA,
+
 	MAX UMETA(Hidden)
 };
 
@@ -29,10 +30,9 @@ class PVZ_USFX_LAB02_API AGrilla : public AActor
 	//	FIntPoint TileIndex;
 
 
-
-//public:
-//	UPROPERTY(VisibleInstanceOnly, BluePrintReadOnly, Category = "Tile")
-//	FIntPoint GrillaIndex;
+	//public:
+	//	UPROPERTY(VisibleInstanceOnly, BluePrintReadOnly, Category = "Tile")
+	//	FIntPoint GrillaIndex;
 
 protected:
 	UPROPERTY(EditDefaultsOnly, BluePrintReadOnly, Category = "Grilla")
@@ -55,10 +55,12 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
-	void HandleClicked();
 
 
+
+	void ManejoClick();
 	void Highlight(bool bOn);
+
 	bool bIsActive;
 
 	UPROPERTY()

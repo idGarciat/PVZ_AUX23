@@ -44,7 +44,7 @@ void AGrilla::Tick(float DeltaTime)
 
 }
 
-void AGrilla::HandleClicked()
+void AGrilla::ManejoClick()
 {
 	// Check we are not already active
 	if (!bIsActive)
@@ -54,7 +54,7 @@ void AGrilla::HandleClicked()
 		//localizacion actual del actor
 		FVector Localizacion = GetActorLocation();
 
-		// Change material
+		// Spawn del actor
 		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Grilla ocupada: %s"), *GetName()));
 		AGirasol* Girasol = GetWorld()->SpawnActor<AGirasol>(AGirasol::StaticClass(), FVector(Localizacion.X, Localizacion.Y, Localizacion.Z + 5), FRotator::ZeroRotator);
 
@@ -73,19 +73,20 @@ void AGrilla::Highlight(bool bOn)
 	// Do not highlight if the block has already been activated.
 	if (bIsActive)
 	{
+		//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("1Grilla a usar: %s"), *GetName()));
 		return;
 	}
 
 	if (bOn)
 	{
 		//BlockMesh->SetMaterial(0, BaseMaterial);
-		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Grilla ocupada")));
+		//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Grilla sin ocupar: %s"), *GetName()));
 
 	}
 	else
 	{
 		//BlockMesh->SetMaterial(0, BlueMaterial);
-		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Grilla no ocupada")));
+		//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Nose xd")));
 
 	}
 }

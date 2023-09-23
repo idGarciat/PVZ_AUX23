@@ -25,8 +25,8 @@ public:
 
 
 	TWeakObjectPtr<class AHUDPlantas> OwningHUD;
-	virtual bool SupportsKeyboardFocus() const override { return true; };
 
+	virtual bool SupportsKeyboardFocus() const override { return true; };
 
 	//FReply OnMouseButtonDown(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent) override;
 
@@ -35,4 +35,6 @@ public:
 	FReply QuitarMenu();
 
 	FReply SpawnPLanta();
+
+
 };

@@ -7,6 +7,8 @@
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Engine/StaticMesh.h"
+
+#include "Plant.h"
 #include "Zombie.h"
 
 // Sets default values
@@ -69,6 +71,16 @@ void AProyectil::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimit
 			Zombie->Destroy();
 		};
 	}
+
+	//APlant* Plant = Cast<APlant>(OtherActor);
+	//if (OtherActor->ActorHasTag("Plant")) {
+	//	Plant->energia -= 10;
+	//	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Este es un mensaje %i"), Plant->energia));
+	//	if (Plant->energia <= 0) {
+	//		Plant->Destroy();
+	//	};
+	//}
+
 
 	Destroy();
 

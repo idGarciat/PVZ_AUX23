@@ -35,6 +35,7 @@ protected:
 
 	TArray<TArray<class AGrilla*>> Grilla2dArray;
 
+
 	UPROPERTY(EditAnywhere, Category = "DisposicionGrilla")
 	int32 TamanoX;
 

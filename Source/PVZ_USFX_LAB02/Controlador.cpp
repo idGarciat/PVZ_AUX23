@@ -8,9 +8,8 @@ AControlador::AControlador()
 	bShowMouseCursor = true;
 
 	bEnableClickEvents = true;
-	bEnableTouchEvents = true;
 
-	DefaultMouseCursor = EMouseCursor::Default;
+	DefaultMouseCursor = EMouseCursor::Crosshairs;
 
 	bEnableMouseOverEvents = true;
 }

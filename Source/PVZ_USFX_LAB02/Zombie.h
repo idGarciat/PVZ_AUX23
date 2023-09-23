@@ -29,7 +29,6 @@ protected:
 
 
 
-
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -39,6 +38,7 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	int energia;
+
 
 	FTimerHandle Temporizador;
 
@@ -51,5 +51,7 @@ public:
 
 	virtual void NotifyHit(class UPrimitiveComponent* MyComp, AActor* Other, class UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal,
 		FVector NormalImpulse, const FHitResult& Hit)override;//esta funcion nos notifica cada golpe que de la clase.
+
+
 
 };

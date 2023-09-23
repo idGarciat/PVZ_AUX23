@@ -14,12 +14,12 @@ class PVZ_USFX_LAB02_API AJugador : public APawn
 
 public:
 	// Sets default values for this pawn's properties
-	//AJugador();
+	AJugador();
 
 protected:
-	AJugador(const FObjectInitializer& ObjectInitializer);
+	//AJugador(const FObjectInitializer& ObjectInitializer);
 
-	virtual void CalcCamera(float DeltaTime, struct FMinimalViewInfo& OutResult) override;
+	//virtual void CalcCamera(float DeltaTime, struct FMinimalViewInfo& OutResult) override;
 
 
 
@@ -32,12 +32,6 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-
-
-	void TriggerClick();
-
-	void TraceForBlock(const FVector& Start, const FVector& End, bool bDrawDebugHelpers);
 
 
 	static const FName Spawns;
@@ -73,4 +67,16 @@ public:
 
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite)
 	class AGrilla* GrillaActual;
+
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite)
+	class ASol* SolActual;
+
+
+
+	void TriggerClick();
+
+	void SeguimientoGrilla(const FVector& Start, const FVector& End, bool bDrawDebugHelpers);
+
+	void SeguimientoSol(const FVector& Start, const FVector& End, bool bDrawDebugHelpers);
+
 };

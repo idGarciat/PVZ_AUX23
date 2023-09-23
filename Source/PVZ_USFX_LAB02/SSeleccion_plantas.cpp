@@ -14,6 +14,7 @@ void SSeleccion_plantas::Construct(const FArguments& InArgs)
 
 	FMargin ButtonPadding = FMargin(200, 20, 10, 5);
 
+
 	const FText TitleText = FText::FromString("Seleccion \n de \nplantas");
 	const FText ButtonText = FText::FromString("Cerrar HUD");
 
@@ -26,6 +27,7 @@ void SSeleccion_plantas::Construct(const FArguments& InArgs)
 	ChildSlot
 		[
 			SNew(SOverlay)
+
 				+ SOverlay::Slot()
 				.HAlign(HAlign_Left)
 				.VAlign(VAlign_Top)
@@ -176,9 +178,11 @@ FReply SSeleccion_plantas::SpawnPLanta()
 
 	if (OwningHUD.IsValid())
 	{
-		//OwningHUD->SpawnPlanta();
-		
+		OwningHUD->SpawnPlanta();
+
 	}
 
 	return FReply::Handled();
 }
+
+

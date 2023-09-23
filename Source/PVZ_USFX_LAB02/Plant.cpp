@@ -24,9 +24,9 @@ APlant::APlant()
 	MeshPlanta->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	//MeshZombie->SetSimulatePhysics(true);
 
-	ECollisionChannel ECC_MiCanal = ECC_GameTraceChannel1;
+	//ECollisionChannel ECC_MiCanal = ECC_GameTraceChannel1;
 
-	//MeshPlanta->SetCollisionObjectType(ECollisionChannel::ECC_Pawn);
+	MeshPlanta->SetCollisionObjectType(ECollisionChannel::ECC_Pawn);
 
 
 	MeshPlanta->SetCollisionProfileName(UCollisionProfile::BlockAllDynamic_ProfileName);
@@ -74,9 +74,9 @@ void APlant::Tick(float DeltaTime)
 
 void APlant::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Este es un mensaje")));
+	//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Este es un mensaje")));
 
-	Destroy();
+	//Destroy();
 
 }
 

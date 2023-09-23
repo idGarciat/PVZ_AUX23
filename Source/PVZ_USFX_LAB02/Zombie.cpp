@@ -15,11 +15,13 @@ AZombie::AZombie()
 	PrimaryActorTick.bCanEverTick = true;
 
 	MeshZombie = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Zombie Mesh"));
-	//MeshZombie->SetCollisionProfileName(UCollisionProfile::BlockAll_ProfileName);
+
 	MeshZombie->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 
 	//MeshZombie->SetSimulatePhysics(true);
 	MeshZombie->SetCollisionObjectType(ECollisionChannel::ECC_Pawn);
+
+	MeshZombie->SetCollisionProfileName(UCollisionProfile::BlockAllDynamic_ProfileName);
 	MeshZombie->SetupAttachment(RootComponent);
 
 	RootComponent = MeshZombie;

@@ -5,6 +5,7 @@
 #include "Zombie.h"
 #include "Plant.h"
 #include "Grilla.h"
+#include "Sol.h"
 
 #include "Kismet/GameplayStatics.h"
 
@@ -20,46 +21,47 @@
 const FName AJugador::Spawns("MovimientoLateral");
 
 //Sets default values
-//AJugador::AJugador()
-//{
-//	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-//	PrimaryActorTick.bCanEverTick = true;
-//
-//	AutoPossessPlayer = EAutoReceiveInput::Player0;
-//	AJugador* GetViewTarget();
-//	// Create a camera boom...
-//	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
-//	CameraBoom->SetupAttachment(RootComponent);
-//	CameraBoom->SetUsingAbsoluteRotation(true); // Don't want arm to rotate when ship does
-//	CameraBoom->TargetArmLength = 1200.f;
-//	CameraBoom->SetRelativeRotation(FRotator(-80.f, 0.f, 0.f));
-//	CameraBoom->bDoCollisionTest = false; // Don't want to pull camera in when it collides with level
-//
-//	// Create a camera...
-//	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("TopDownCamera"));
-//	CameraComponent->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
-//	CameraComponent->bUsePawnControlRotation = false;	// Camera does not rotate relative to arm
-//
-//
-//	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComp"));
-//	CameraComponent->SetupAttachment(RootComponent);
-//	contador = 0;
-//	Localizacion = FVector(400.0, 400.0, 100.0);
-//
-//}
-
-
-AJugador::AJugador(const FObjectInitializer& ObjectInitializer)
-	: Super(ObjectInitializer)
+AJugador::AJugador()
 {
+	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	PrimaryActorTick.bCanEverTick = true;
+
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
-}
-void AJugador::CalcCamera(float DeltaTime, FMinimalViewInfo& OutResult)
-{
-	Super::CalcCamera(DeltaTime, OutResult);
 
-	OutResult.Rotation = FRotator(-90.0f, -90.0f, 0.0f);
+	AJugador* GetViewTarget();
+	// Create a camera boom...
+	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
+	CameraBoom->SetupAttachment(RootComponent);
+	CameraBoom->SetUsingAbsoluteRotation(true); // Don't want arm to rotate when ship does
+	CameraBoom->TargetArmLength = 1200.f;
+	CameraBoom->SetRelativeRotation(FRotator(-80.f, 0.f, 0.f));
+	CameraBoom->bDoCollisionTest = false; // Don't want to pull camera in when it collides with level
+
+	// Create a camera...
+	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("TopDownCamera"));
+	CameraComponent->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
+	CameraComponent->bUsePawnControlRotation = false;	// Camera does not rotate relative to arm
+
+
+	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComp"));
+	CameraComponent->SetupAttachment(RootComponent);
+	contador = 0;
+	Localizacion = FVector(400.0, 400.0, 100.0);
+
 }
+
+
+//AJugador::AJugador(const FObjectInitializer& ObjectInitializer)
+//	: Super(ObjectInitializer)
+//{
+//	AutoPossessPlayer = EAutoReceiveInput::Player0;
+//}
+//void AJugador::CalcCamera(float DeltaTime, FMinimalViewInfo& OutResult)
+//{
+//	Super::CalcCamera(DeltaTime, OutResult);
+//
+//	OutResult.Rotation = FRotator(-90.0f, -90.0f, 0.0f);
+//}
 
 
 // Called when the game starts or when spawned
@@ -85,22 +87,30 @@ void AJugador::Tick(float DeltaTime)
 		{
 			if (UCameraComponent* OurCamera = PC->GetViewTarget()->FindComponentByClass<UCameraComponent>())
 			{
+
 				FVector Start = OurCamera->GetComponentLocation();
 				FVector End = Start + (OurCamera->GetComponentRotation().Vector() * 8000.0f);
-				TraceForBlock(Start, End, true);
+
+				SeguimientoGrilla(Start, End, true);
+				SeguimientoSol(Start, End, true);
+
 			}
 		}
 		else
 		{
 			FVector Start, Dir, End;
 			PC->DeprojectMousePositionToWorld(Start, Dir);
+
 			End = Start + (Dir * 8000.0f);
-			TraceForBlock(Start, End, false);
+
+			SeguimientoGrilla(Start, End, false);
+			SeguimientoSol(Start, End, false);
+
 		}
+
 	}
 
 }
-
 // Called to bind functionality to input
 void AJugador::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
@@ -112,6 +122,7 @@ void AJugador::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis(Spawns); //No funciona ya que esto es con valores y no es lo mismo que llamar a la función
 
 	PlayerInputComponent->BindAction("Accion1", IE_Pressed, this, &AJugador::SpawnZombie); //Aquí sólo se llama a la función
+
 	PlayerInputComponent->BindAction("Prueba click", EInputEvent::IE_Pressed, this, &AJugador::TriggerClick);
 
 
@@ -122,13 +133,18 @@ void AJugador::TriggerClick()
 {
 	if (GrillaActual)
 	{
-		GrillaActual->HandleClicked();
+		GrillaActual->ManejoClick();
 	}
+	else if (SolActual)
+	{
+		SolActual->ManejoClick();
+	}
+
 
 }
 
 
-void AJugador::TraceForBlock(const FVector& Start, const FVector& End, bool bDrawDebugHelpers)
+void AJugador::SeguimientoGrilla(const FVector& Start, const FVector& End, bool bDrawDebugHelpers)
 {
 	FHitResult HitResult;
 	GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility);
@@ -160,6 +176,37 @@ void AJugador::TraceForBlock(const FVector& Start, const FVector& End, bool bDra
 	}
 }
 
+void AJugador::SeguimientoSol(const FVector& Start, const FVector& End, bool bDrawDebugHelpers)
+{
+	FHitResult HitResult;
+	GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility);
+	if (bDrawDebugHelpers)
+	{
+		DrawDebugLine(GetWorld(), Start, HitResult.Location, FColor::Red);
+		DrawDebugSolidBox(GetWorld(), HitResult.Location, FVector(20.0f), FColor::Red);
+	}
+	if (HitResult.Actor.IsValid())
+	{
+		ASol* Sol = Cast<ASol>(HitResult.Actor.Get());
+		if (SolActual != Sol)
+		{
+			if (SolActual)
+			{
+				SolActual->Resaltado(false);
+			}
+			if (Sol)
+			{
+				Sol->Resaltado(true);
+			}
+			SolActual = Sol;
+		}
+	}
+	else if (SolActual)
+	{
+		SolActual->Resaltado(false);
+		SolActual = nullptr;
+	}
+}
 
 
 void AJugador::SpawnZombie()

@@ -67,12 +67,12 @@ void APVZ_USFX_LAB02GameModeBase::BeginPlay()
 	//ASol* Sol2 = GetWorld()->SpawnActor<ASol>(ASol::StaticClass(), FVector(-450, -50, 160), FRotator::ZeroRotator);
 
 	//Definiendo la posición de los zombies
-	FVector SpawnLocationZombie = FVector(-950.0f, 400.0f, 22.0f);
+	FVector SpawnLocationZombie = FVector(-920.0f, 400.0f, 22.0f);
 
 	// Genera 5 zombies
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 7; i++) {
 		// Define una posición temporal para el zombie en X
-		SpawnLocationZombie.X += 150;
+		SpawnLocationZombie.X += 100;
 		// Aparicion de los zombies
 
 
@@ -89,14 +89,14 @@ void APVZ_USFX_LAB02GameModeBase::BeginPlay()
 
 
 	//Definiendo la posición de las plantas
-	FVector SpawnLocationPlant = FVector(-950.0f, -600.0f, 22.0f);
+	FVector SpawnLocationPlant = FVector(-920.0f, -600.0f, 22.0f);
 	FVector SpawnLocationPlantTemp = SpawnLocationPlant;
 
 	// Genera 5 plantas
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 7; i++)
 	{
 		//Define una posicion temporal para la planta en X
-		SpawnLocationPlantTemp.X += 150;
+		SpawnLocationPlantTemp.X += 100;
 
 
 
@@ -104,7 +104,7 @@ void APVZ_USFX_LAB02GameModeBase::BeginPlay()
 		{
 
 			// Define una posición temporal para la planta en Y
-			SpawnLocationPlantTemp.Y += 80;
+			SpawnLocationPlantTemp.Y += 100;
 
 			// Genera un nombre para la planta
 			NombrePlanta = FString::Printf(TEXT("Planta %d_%d"), i + 1, j + 1); // Cambio en la generación del nombre
@@ -120,11 +120,12 @@ void APVZ_USFX_LAB02GameModeBase::BeginPlay()
 
 			// Muestra un mensaje en la pantalla
 			GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Energía de %s: %i"), *NombrePlanta, NuevaPlantaGuisante->energia));
-
+			// Muestra un mensaje en el registro de errores
 			UE_LOG(LogTemp, Warning, TEXT("Energía de %s: %i"), *NombrePlanta, NuevaPlantaGuisante->energia);
 
 			// Agrega la planta al contenedor de plantas
 			Plantas.Add(NombrePlanta, NuevaPlantaGuisante);
+
 
 			Plantas2.Add(NuevaPlantaGuisante);
 
@@ -145,7 +146,7 @@ void APVZ_USFX_LAB02GameModeBase::BeginPlay()
 
 	//World->GetTimerManager().SetTimer(Temporizador, this, &APVZ_USFX_LAB02GameModeBase::aumentovelocidad, 1, true);
 
-	//World->GetTimerManager().SetTimer(Temporizador2, this, &APVZ_USFX_LAB02GameModeBase::MostrarEnergiaDePlantas, 1.f, true);
+	World->GetTimerManager().SetTimer(Temporizador2, this, &APVZ_USFX_LAB02GameModeBase::MostrarEnergiaDePlantas, 1.f, true);
 
 
 }
@@ -218,7 +219,7 @@ void APVZ_USFX_LAB02GameModeBase::aumentovelocidad()
 void APVZ_USFX_LAB02GameModeBase::MostrarEnergiaDePlantas()
 {
 
-	//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Este es un mensaje")));
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Este es un mensaje")));
 
 	NombrePlanta = FString::Printf(TEXT("Planta %d_%d"), FilaActual, ColumnaActual);
 
@@ -236,7 +237,6 @@ void APVZ_USFX_LAB02GameModeBase::MostrarEnergiaDePlantas()
 	else
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("No se encontró la planta")));
-
 	}
 
 	ColumnaActual++;

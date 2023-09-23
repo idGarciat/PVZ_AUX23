@@ -39,6 +39,7 @@ void AGridaManager::BeginPlay()
 
 	PosInicialX = -920;
 	PosInicialY = -700;
+
 	for (int32 y = 0; y < TamanoY; y++)
 	{
 
@@ -56,14 +57,14 @@ void AGridaManager::BeginPlay()
 
 
 			// Intercalado horizontal
-			//if (x % 2 == 0)
-			//{
-			//	GrillaSpawneada = GrillaAgua;
-			//}
-			//else
-			//{
-			//	GrillaSpawneada = GrillaPasto;
-			//}
+			if (x % 2 == 0)
+			{
+				GrillaSpawneada = GrillaAgua;
+			}
+			else
+			{
+				GrillaSpawneada = GrillaPasto;
+			}
 
 
 			////Intercalado vertical
@@ -78,14 +79,14 @@ void AGridaManager::BeginPlay()
 
 
 			// Formato de ajedrez
-			if ((x + y) % 2 == 0)
-			{
-				GrillaSpawneada = GrillaAgua;
-			}
-			else
-			{
-				GrillaSpawneada = GrillaPasto;
-			}
+			//if ((x + y) % 2 == 0)
+			//{
+			//	GrillaSpawneada = GrillaAgua;
+			//}
+			//else
+			//{
+			//	GrillaSpawneada = GrillaPasto;
+			//}
 
 
 			AGrilla* nuevagrilla = GetWorld()->SpawnActor<AGrilla>(GrillaSpawneada, FVector(FIntPoint(xPos, yPos), 20), FRotator::ZeroRotator);
@@ -97,8 +98,6 @@ void AGridaManager::BeginPlay()
 
 
 		}
-
-
 	}
 }
 

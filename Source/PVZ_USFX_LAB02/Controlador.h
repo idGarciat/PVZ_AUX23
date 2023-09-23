@@ -7,13 +7,14 @@
 #include "Controlador.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PVZ_USFX_LAB02_API AControlador : public APlayerController
 {
 	GENERATED_BODY()
+public:
 
 	AControlador();
-	
+
 };

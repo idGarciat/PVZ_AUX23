@@ -43,8 +43,8 @@ void UMovimientoAleatorio::TickComponent(float DeltaTime, ELevelTick TickType, F
 		// Actualiza la ubicacion
 		Parent->SetActorLocation(NewPos);
 
-		// Rotación aleatoria
 
+		// Rotación aleatoria
 		//auto NewRot = Parent->GetActorRotation() + FRotator(FMath::FRandRange(-1, 1) * RadioMovimiento, FMath::FRandRange(-1, 1) * RadioMovimiento, FMath::FRandRange(-1, 1) * RadioMovimiento);
 
 		//Actualiza la rotacion	

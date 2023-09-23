@@ -3,3 +3,10 @@
 
 #include "ZombieComun.h"
 
+AZombieComun::AZombieComun()
+{
+
+	energia = 150;
+
+
+}
