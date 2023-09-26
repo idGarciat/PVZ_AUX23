@@ -58,7 +58,6 @@ void APlant::BeginPlay()
 
 	UWorld* const World = GetWorld();
 
-	const FVector direcciondisparo = FVector(10, 10, 100.f);
 
 	//World->GetTimerManager().SetTimer(temporizadordisparo, this, &APlant::disparo(direcciondisparo), 2, true);
 

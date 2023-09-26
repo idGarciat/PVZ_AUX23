@@ -63,7 +63,9 @@ void APlanta_Ataque::Tick(float DeltaTime)
 
 void APlanta_Ataque::AtaquePlanta()
 {
+
 	FireShot(FVector(0.0f, 1.0f, 0.0f));
+
 }
 
 
