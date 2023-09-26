@@ -31,6 +31,8 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	//Si tiene permitido disparar
+	uint32 bCanFire : 1;
 
 protected:
 
@@ -46,8 +48,6 @@ protected:
 
 	void ShotTimerExpired();
 
-	/* Flag to control firing  */
-	uint32 bCanFire : 1;
 
 	/** Handle for efficient management of ShotTimerExpired timer */
 	FTimerHandle TimerHandle_ShotTimerExpired;

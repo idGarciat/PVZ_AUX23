@@ -183,6 +183,7 @@ void APVZ_USFX_LAB02GameModeBase::Tick(float DeltaTime)
 	//}
 
 
+
 }
 
 void APVZ_USFX_LAB02GameModeBase::Spawn()

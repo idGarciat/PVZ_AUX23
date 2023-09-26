@@ -44,6 +44,7 @@ APlanta_Ataque::APlanta_Ataque()
 
 	//Ocultar el actor sin destruirlo
 	//SetActorHiddenInGame(true);
+
 }
 
 
