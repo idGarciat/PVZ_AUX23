@@ -13,6 +13,7 @@
 #include "Proyectil_Fuego.h"
 
 #include "TimerManager.h"
+#include <cmath>
 
 APlanta_Ataque::APlanta_Ataque()
 {
@@ -39,6 +40,10 @@ APlanta_Ataque::APlanta_Ataque()
 
 	CantidadDisparos = 1;
 	contador = 1;
+
+
+	//Ocultar el actor sin destruirlo
+	//SetActorHiddenInGame(true);
 }
 
 

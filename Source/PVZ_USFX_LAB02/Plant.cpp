@@ -22,7 +22,7 @@ APlant::APlant()
 	MeshPlanta->SetupAttachment(RootComponent);
 
 	MeshPlanta->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-	//MeshZombie->SetSimulatePhysics(true);
+	//MeshPlanta->SetSimulatePhysics(true);
 
 	//ECollisionChannel ECC_MiCanal = ECC_GameTraceChannel1;
 
