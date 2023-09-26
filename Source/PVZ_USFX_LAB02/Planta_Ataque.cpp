@@ -55,13 +55,21 @@ void APlanta_Ataque::BeginPlay()
 
 	UWorld* const World = GetWorld();
 
-	GetWorldTimerManager().SetTimer(ManejoTiempo, this, &APlanta_Ataque::AtaquePlanta, FireRate, true, 1);
+	GetWorldTimerManager().SetTimer(ManejoTiempo, this, &APlanta_Ataque::AtaquePlanta, FireRate, true, 0.1f);
 
 }
 
 void APlanta_Ataque::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	//TiempoTranscurrido += DeltaTime;
+
+	//if (TiempoTranscurrido > 0.5f) {
+
+	//	AtaquePlanta();
+	//	TiempoTranscurrido = 0.0f;
+	//}
 
 }
 

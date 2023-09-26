@@ -78,7 +78,7 @@ void APVZ_USFX_LAB02GameModeBase::BeginPlay()
 
 		NuevoZombie = GetWorld()->SpawnActor<AZombieComun>(AZombieComun::StaticClass(), SpawnLocationZombie, FRotator::ZeroRotator);
 
-		NuevoZombie->Velocidad = FMath::FRandRange(0.1, 0.1);
+		NuevoZombie->Velocidad = FMath::FRandRange(0.1, 0.5);
 
 		Zombies.Add(NuevoZombie);
 

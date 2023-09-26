@@ -48,6 +48,7 @@ protected:
 
 	void ShotTimerExpired();
 
+	float TiempoTranscurrido;
 
 	/** Handle for efficient management of ShotTimerExpired timer */
 	FTimerHandle TimerHandle_ShotTimerExpired;

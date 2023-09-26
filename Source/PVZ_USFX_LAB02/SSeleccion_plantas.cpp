@@ -26,6 +26,7 @@ void SSeleccion_plantas::Construct(const FArguments& InArgs)
 
 	ChildSlot
 		[
+			// Agrega el fondo
 			SNew(SOverlay)
 
 				+ SOverlay::Slot()
@@ -34,6 +35,7 @@ void SSeleccion_plantas::Construct(const FArguments& InArgs)
 				.Padding(ButtonPadding) // Ajusta el relleno según sea necesario
 
 				[
+					// Caja horizontal
 					SNew(SBox)
 						.WidthOverride(1000) // Ancho del fondo
 						.HeightOverride(100) // Altura del fondo
@@ -47,6 +49,7 @@ void SSeleccion_plantas::Construct(const FArguments& InArgs)
 									SNew(SOverlay)
 										+ SOverlay::Slot()
 										[
+											// Imagen de fondo
 											SNew(SImage)
 												.ColorAndOpacity(FColor::Black)
 										]
@@ -57,6 +60,7 @@ void SSeleccion_plantas::Construct(const FArguments& InArgs)
 												+ SHorizontalBox::Slot()
 												[
 													SNew(SButton)
+														//Llamando a la funcion OnClicked
 														.OnClicked(this, &SSeleccion_plantas::OnClicked)
 														[
 															SNew(STextBlock)
@@ -69,6 +73,7 @@ void SSeleccion_plantas::Construct(const FArguments& InArgs)
 												+ SHorizontalBox::Slot()
 												[
 													SNew(SButton)
+														//Llamando a la funcion OnClicked
 														.OnClicked(this, &SSeleccion_plantas::OnClicked)
 														[
 															SNew(STextBlock)
@@ -81,6 +86,7 @@ void SSeleccion_plantas::Construct(const FArguments& InArgs)
 												+ SHorizontalBox::Slot()
 												[
 													SNew(SButton)
+														//Llamando a la funcion SpawnPlanta
 														.OnClicked(this, &SSeleccion_plantas::SpawnPLanta)
 														[
 															SNew(STextBlock)
@@ -105,7 +111,7 @@ void SSeleccion_plantas::Construct(const FArguments& InArgs)
 								]
 						]
 				]
-
+				//Titulo
 				+ SOverlay::Slot()
 				.HAlign(HAlign_Left)
 				.VAlign(VAlign_Top)
