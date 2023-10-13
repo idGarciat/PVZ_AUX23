@@ -15,6 +15,7 @@ ASol::ASol()
 
 	//Creando un "objeto" para el movimiento
 	MovimientoAleatorio = CreateDefaultSubobject<UMovimientoAleatorio>(TEXT("Movimiento"));
+
 	RootComponent = MeshSol;
 
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> SolMesh(TEXT("StaticMesh'/Game/StarterContent/Shapes/Shape_Torus.Shape_Torus'"));

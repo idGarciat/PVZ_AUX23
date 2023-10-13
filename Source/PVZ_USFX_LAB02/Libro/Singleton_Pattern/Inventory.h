@@ -3,21 +3,17 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Plant.h"
-#include "Girasol.generated.h"
+#include "GameFramework/Actor.h"
+#include "Inventory.generated.h"
 
-/**
- * 
- */
 UCLASS()
-class PVZ_USFX_LAB02_API AGirasol : public APlant
+class PVZ_USFX_LAB02_API AInventory : public AActor
 {
 	GENERATED_BODY()
 
-
 public:
 	// Sets default values for this actor's properties
-	AGirasol();
+	AInventory();
 
 protected:
 	// Called when the game starts or when spawned
@@ -26,11 +22,9 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	
 
-	void SpawnSoles();
+public:
+	UPROPERTY()
+	AInventory* Instance;
 
-	FTimerHandle Temporizador;
-
-	FVector UbicacionActual;
 };

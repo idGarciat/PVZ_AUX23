@@ -100,6 +100,7 @@ void APlanta_Ataque::FireShot(FVector FireDirection)
 			{
 				// spawn the projectile
 				World->SpawnActor<AProyectil_Fuego>(SpawnLocation, FireRotation);
+
 			}
 
 			//bCanFire = false;

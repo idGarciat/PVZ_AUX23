@@ -15,6 +15,9 @@ AGirasol::AGirasol()
 	MeshPlanta->SetRelativeScale3D(FVector(3, 1, 3));
 	energia = 150;
 
+	//Message from the current location of the plant
+		//GEngine->AbortInsideMemberFunction(TEXT("Ubicacion de la planta %f"), *UbicacionActual);
+
 }
 
 void AGirasol::BeginPlay()
@@ -26,6 +29,16 @@ void AGirasol::BeginPlay()
 	UWorld* const World = GetWorld();
 
 	World->GetTimerManager().SetTimer(Temporizador, this, &AGirasol::SpawnSoles, Tiempo, true);
+
+
+	UbicacionActual = GetActorLocation();
+
+	float UbicacionActualX = UbicacionActual.X;
+	float UbicacionActualY = UbicacionActual.Y;
+	float UbicacionActualZ = UbicacionActual.Z;
+
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Ubicacion de la planta %f, %f, %f"), UbicacionActualX, UbicacionActualY, UbicacionActualZ));
+
 }
 
 

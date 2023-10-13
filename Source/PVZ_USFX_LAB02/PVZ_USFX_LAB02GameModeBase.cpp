@@ -22,6 +22,12 @@
 #include "ZombieCono.h"
 #include "ZombieCubo.h"
 
+
+#include "Libro/Builder_Pattern/Builder_Main.h"
+#include "Libro/Factory_Pattern/FactoryMethod_Main.h"
+#include "Libro/Singleton_Pattern/Singleton_Main.h"
+
+
 APVZ_USFX_LAB02GameModeBase::APVZ_USFX_LAB02GameModeBase()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -31,7 +37,7 @@ APVZ_USFX_LAB02GameModeBase::APVZ_USFX_LAB02GameModeBase()
 	//Definiendo el Controlador
 	PlayerControllerClass = AControlador::StaticClass();
 	//Definiendo el HUD
-	HUDClass = AHUDPlantas::StaticClass();
+	//HUDClass = AHUDPlantas::StaticClass();
 
 
 
@@ -45,11 +51,26 @@ APVZ_USFX_LAB02GameModeBase::APVZ_USFX_LAB02GameModeBase()
 	FilaActual = 1;
 	ColumnaActual = 1;
 
+
+}
+
+void APVZ_USFX_LAB02GameModeBase::patrones()
+{
+
+	//ABuilder_Main* Builder = GetWorld()->SpawnActor<ABuilder_Main>(ABuilder_Main::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
+
+	//ASingleton_Main* Singleton = GetWorld()->SpawnActor<ASingleton_Main>(ASingleton_Main::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
+
+	AFactoryMethod_Main* FactoryMethod = GetWorld()->SpawnActor<AFactoryMethod_Main>(AFactoryMethod_Main::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
+
+
 }
 
 void APVZ_USFX_LAB02GameModeBase::BeginPlay()
 {
 	Super::BeginPlay();
+
+	patrones();
 
 	// Definición de un objeto de tipo World
 	UWorld* const World = GetWorld();
@@ -57,7 +78,6 @@ void APVZ_USFX_LAB02GameModeBase::BeginPlay()
 	//ASpawns* Spawn1 = GetWorld()->SpawnActor<ASpawns>(ASpawns::StaticClass(), FVector(0,0,0), FRotator::ZeroRotator);
 	// 
 	//AZombie* Zombie1 = GetWorld()->SpawnActor<AZombie>(AZombie::StaticClass(), FVector(400.0, 200.0, 100.0), FRotator::ZeroRotator);
-
 
 
 	//World->GetTimerManager().SetTimer(Temporizador, this, &APVZ_USFX_LAB02GameModeBase::Spawn, 2, true);
@@ -69,11 +89,11 @@ void APVZ_USFX_LAB02GameModeBase::BeginPlay()
 	//Definiendo la posición de los zombies
 	FVector SpawnLocationZombie = FVector(-920.0f, 400.0f, 22.0f);
 
-	// Genera 5 zombies
+	//Genera 5 zombies
 	for (int i = 0; i < 7; i++) {
-		// Define una posición temporal para el zombie en X
+		//	 Define una posición temporal para el zombie en X
 		SpawnLocationZombie.X += 100;
-		// Aparicion de los zombies
+		//Aparicion de los zombies
 
 
 		NuevoZombie = GetWorld()->SpawnActor<AZombieComun>(AZombieComun::StaticClass(), SpawnLocationZombie, FRotator::ZeroRotator);
@@ -119,9 +139,10 @@ void APVZ_USFX_LAB02GameModeBase::BeginPlay()
 			//UE_LOG(LogTemp, Warning, TEXT("Energía de %s: %i"), *NombrePlanta, NuevaPlanta->energia);
 
 			// Muestra un mensaje en la pantalla
-			GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Energía de %s: %i"), *NombrePlanta, NuevaPlantaGuisante->energia));
+			//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Energía de %s: %i"), *NombrePlanta, NuevaPlantaGuisante->energia));
+
 			// Muestra un mensaje en el registro de errores
-			UE_LOG(LogTemp, Warning, TEXT("Energía de %s: %i"), *NombrePlanta, NuevaPlantaGuisante->energia);
+			//UE_LOG(LogTemp, Warning, TEXT("Energía de %s: %i"), *NombrePlanta, NuevaPlantaGuisante->energia);
 
 			// Agrega la planta al contenedor de plantas
 			Plantas.Add(NombrePlanta, NuevaPlantaGuisante);
@@ -146,7 +167,11 @@ void APVZ_USFX_LAB02GameModeBase::BeginPlay()
 
 	//World->GetTimerManager().SetTimer(Temporizador, this, &APVZ_USFX_LAB02GameModeBase::aumentovelocidad, 1, true);
 
-	World->GetTimerManager().SetTimer(Temporizador2, this, &APVZ_USFX_LAB02GameModeBase::MostrarEnergiaDePlantas, 1.f, true);
+	World->GetTimerManager().SetTimer(Temporizador2, this, &APVZ_USFX_LAB02GameModeBase::prueba, 1.f, false, 5.f);
+
+
+	//AZombieCubo* NewZombieCubo = GetWorld()->SpawnActor<AZombieCubo>(AZombieCubo::StaticClass(), FVector(-500.0, 450.0, 30.0), FRotator::ZeroRotator);
+
 
 
 }
@@ -191,7 +216,7 @@ void APVZ_USFX_LAB02GameModeBase::Spawn()
 	contador2++;
 
 	contador = contador + FVector(100, 0, 0);
-	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Este es un mensaje")));
+	//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Este es un mensaje")));
 
 
 	AZombie* Zombie1 = GetWorld()->SpawnActor<AZombie>(AZombie::StaticClass(), localizacion, FRotator::ZeroRotator);
@@ -220,7 +245,7 @@ void APVZ_USFX_LAB02GameModeBase::aumentovelocidad()
 void APVZ_USFX_LAB02GameModeBase::MostrarEnergiaDePlantas()
 {
 
-	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Este es un mensaje")));
+	//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Este es un mensaje")));
 
 	NombrePlanta = FString::Printf(TEXT("Planta %d_%d"), FilaActual, ColumnaActual);
 
@@ -230,7 +255,7 @@ void APVZ_USFX_LAB02GameModeBase::MostrarEnergiaDePlantas()
 	{
 		FString Mensaje = FString::Printf(TEXT("%s: Energia %i"), *NombrePlanta, Planta->energia);
 
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, Mensaje);
+		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, Mensaje);
 
 		UE_LOG(LogTemp, Warning, TEXT("%s"), *Mensaje);
 
@@ -252,6 +277,13 @@ void APVZ_USFX_LAB02GameModeBase::MostrarEnergiaDePlantas()
 			FilaActual = 1;
 		}
 	}
+
+}
+
+void APVZ_USFX_LAB02GameModeBase::prueba()
+{
+
+	NewZombieCubo->CambioUbicacion();
 
 }
 

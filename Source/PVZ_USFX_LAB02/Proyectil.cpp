@@ -50,7 +50,6 @@ AProyectil::AProyectil()
 void AProyectil::BeginPlay()
 {
 	Super::BeginPlay();
-
 }
 
 // Called every frame
@@ -62,9 +61,10 @@ void AProyectil::Tick(float DeltaTime)
 
 void AProyectil::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
-	AZombie* Zombie = Cast<AZombie>(OtherActor);
 
-	if (OtherActor->ActorHasTag("Zombie")) {
+	Zombie = Cast<AZombie>(OtherActor);
+
+	if (OtherActor == Zombie) {
 		Zombie->energia -= 10;
 		//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Este es un mensaje %i"), Zombie->energia));
 		if (Zombie->energia <= 0) {
@@ -86,4 +86,5 @@ void AProyectil::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimit
 
 
 }
+
 

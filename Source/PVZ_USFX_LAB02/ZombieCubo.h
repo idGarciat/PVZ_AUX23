@@ -13,5 +13,14 @@ UCLASS()
 class PVZ_USFX_LAB02_API AZombieCubo : public AZombie
 {
 	GENERATED_BODY()
-	
+public:
+	AZombieCubo();
+	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
+
+
+	FTimerHandle Tiempito;
+
+	void CambioUbicacion();
+
 };

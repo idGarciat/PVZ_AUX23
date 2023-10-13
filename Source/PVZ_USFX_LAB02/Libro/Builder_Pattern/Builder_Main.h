@@ -3,21 +3,17 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Plant.h"
-#include "Girasol.generated.h"
+#include "GameFramework/Actor.h"
+#include "Builder_Main.generated.h"
 
-/**
- * 
- */
 UCLASS()
-class PVZ_USFX_LAB02_API AGirasol : public APlant
+class PVZ_USFX_LAB02_API ABuilder_Main : public AActor
 {
 	GENERATED_BODY()
 
-
 public:
 	// Sets default values for this actor's properties
-	AGirasol();
+	ABuilder_Main();
 
 protected:
 	// Called when the game starts or when spawned
@@ -26,11 +22,15 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	
 
-	void SpawnSoles();
 
-	FTimerHandle Temporizador;
+private:
+	//The Builder Actor
+	UPROPERTY(VisibleAnywhere, Category = "Main")
+	class AHotelLodgingBuilder* HotelBuilder;
 
-	FVector UbicacionActual;
+	//The Engineer Actor
+	UPROPERTY(VisibleAnywhere, Category = "Main")
+	class AArchitecturalEngineer* Engineer;
+
 };
