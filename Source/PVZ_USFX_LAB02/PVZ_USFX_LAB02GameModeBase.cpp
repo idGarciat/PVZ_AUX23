@@ -26,6 +26,10 @@
 #include "Libro/Builder_Pattern/Builder_Main.h"
 #include "Libro/Factory_Pattern/FactoryMethod_Main.h"
 #include "Libro/Singleton_Pattern/Singleton_Main.h"
+#include "Libro/Decorator_Pattern/Decorator_Main.h"
+
+#include "Ejemplo/Factory_Method/FactoryMethod_Principal.h"
+#include "Ejemplo/Decorator/Decorator_Principal.h"
 
 
 APVZ_USFX_LAB02GameModeBase::APVZ_USFX_LAB02GameModeBase()
@@ -54,14 +58,28 @@ APVZ_USFX_LAB02GameModeBase::APVZ_USFX_LAB02GameModeBase()
 
 }
 
-void APVZ_USFX_LAB02GameModeBase::patrones()
+void APVZ_USFX_LAB02GameModeBase::EjemploPatrones()
+{
+	//AFactoryMethod_Principal* FactoryMethod = GetWorld()->SpawnActor<AFactoryMethod_Principal>(AFactoryMethod_Principal::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
+
+	ADecorator_Principal* Decorator = GetWorld()->SpawnActor<ADecorator_Principal>(ADecorator_Principal::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
+
+
+
+
+}
+
+void APVZ_USFX_LAB02GameModeBase::Patrones()
 {
 
 	//ABuilder_Main* Builder = GetWorld()->SpawnActor<ABuilder_Main>(ABuilder_Main::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
 
 	//ASingleton_Main* Singleton = GetWorld()->SpawnActor<ASingleton_Main>(ASingleton_Main::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
 
-	AFactoryMethod_Main* FactoryMethod = GetWorld()->SpawnActor<AFactoryMethod_Main>(AFactoryMethod_Main::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
+	//AFactoryMethod_Main* FactoryMethod = GetWorld()->SpawnActor<AFactoryMethod_Main>(AFactoryMethod_Main::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
+
+	//ADecorator_Main* Decorator = GetWorld()->SpawnActor<ADecorator_Main>(ADecorator_Main::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
+
 
 
 }
@@ -70,7 +88,8 @@ void APVZ_USFX_LAB02GameModeBase::BeginPlay()
 {
 	Super::BeginPlay();
 
-	patrones();
+	Patrones();
+	EjemploPatrones();
 
 	// Definición de un objeto de tipo World
 	UWorld* const World = GetWorld();
@@ -166,8 +185,6 @@ void APVZ_USFX_LAB02GameModeBase::BeginPlay()
 
 
 	//World->GetTimerManager().SetTimer(Temporizador, this, &APVZ_USFX_LAB02GameModeBase::aumentovelocidad, 1, true);
-
-	World->GetTimerManager().SetTimer(Temporizador2, this, &APVZ_USFX_LAB02GameModeBase::prueba, 1.f, false, 5.f);
 
 
 	//AZombieCubo* NewZombieCubo = GetWorld()->SpawnActor<AZombieCubo>(AZombieCubo::StaticClass(), FVector(-500.0, 450.0, 30.0), FRotator::ZeroRotator);
@@ -280,11 +297,6 @@ void APVZ_USFX_LAB02GameModeBase::MostrarEnergiaDePlantas()
 
 }
 
-void APVZ_USFX_LAB02GameModeBase::prueba()
-{
 
-	NewZombieCubo->CambioUbicacion();
-
-}
 
 

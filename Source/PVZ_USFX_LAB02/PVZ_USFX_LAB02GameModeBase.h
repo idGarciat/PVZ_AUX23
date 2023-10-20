@@ -26,7 +26,9 @@ public:
 	// Sets default values for this actor's properties
 	APVZ_USFX_LAB02GameModeBase();
 
-	void patrones();
+	void Patrones();
+
+	void EjemploPatrones();
 
 protected:
 	// Called when the game starts or when spawned

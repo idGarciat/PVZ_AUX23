@@ -40,7 +40,7 @@ AZombie::AZombie()
 
 
 	energia = 200;
-	Velocidad = 0.2f;
+	Velocidad = 1.f;
 
 	Tags.Add(TEXT("Zombie"));
 
