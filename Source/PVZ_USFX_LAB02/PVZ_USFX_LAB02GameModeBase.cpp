@@ -27,9 +27,11 @@
 #include "Libro/Factory_Pattern/FactoryMethod_Main.h"
 #include "Libro/Singleton_Pattern/Singleton_Main.h"
 #include "Libro/Decorator_Pattern/Decorator_Main.h"
+#include "Libro/Observer_Pattern/Observer_Main.h"
 
 #include "Ejemplo/Factory_Method/FactoryMethod_Principal.h"
 #include "Ejemplo/Decorator/Decorator_Principal.h"
+#include "Ejemplo/Observer/Observer_Principal.h"
 
 
 APVZ_USFX_LAB02GameModeBase::APVZ_USFX_LAB02GameModeBase()
@@ -62,10 +64,9 @@ void APVZ_USFX_LAB02GameModeBase::EjemploPatrones()
 {
 	//AFactoryMethod_Principal* FactoryMethod = GetWorld()->SpawnActor<AFactoryMethod_Principal>(AFactoryMethod_Principal::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
 
-	ADecorator_Principal* Decorator = GetWorld()->SpawnActor<ADecorator_Principal>(ADecorator_Principal::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
+	//ADecorator_Principal* Decorator = GetWorld()->SpawnActor<ADecorator_Principal>(ADecorator_Principal::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
 
-
-
+	AObserver_Principal* Observer = GetWorld()->SpawnActor<AObserver_Principal>(AObserver_Principal::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
 
 }
 
@@ -79,6 +80,8 @@ void APVZ_USFX_LAB02GameModeBase::Patrones()
 	//AFactoryMethod_Main* FactoryMethod = GetWorld()->SpawnActor<AFactoryMethod_Main>(AFactoryMethod_Main::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
 
 	//ADecorator_Main* Decorator = GetWorld()->SpawnActor<ADecorator_Main>(ADecorator_Main::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
+
+	//AObserver_Main* Observer = GetWorld()->SpawnActor<AObserver_Main>(AObserver_Main::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
 
 
 
@@ -117,7 +120,7 @@ void APVZ_USFX_LAB02GameModeBase::BeginPlay()
 
 		NuevoZombie = GetWorld()->SpawnActor<AZombieComun>(AZombieComun::StaticClass(), SpawnLocationZombie, FRotator::ZeroRotator);
 
-		NuevoZombie->Velocidad = FMath::FRandRange(0.1, 0.5);
+		NuevoZombie->Velocidad = FMath::FRandRange(0.1f, 0.5f);
 
 		Zombies.Add(NuevoZombie);
 
