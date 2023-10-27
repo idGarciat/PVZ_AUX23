@@ -28,10 +28,13 @@
 #include "Libro/Singleton_Pattern/Singleton_Main.h"
 #include "Libro/Decorator_Pattern/Decorator_Main.h"
 #include "Libro/Observer_Pattern/Observer_Main.h"
+#include "Libro/Adapter_Pattern/Adapter_Main.h"
 
 #include "Ejemplo/Factory_Method/FactoryMethod_Principal.h"
 #include "Ejemplo/Decorator/Decorator_Principal.h"
 #include "Ejemplo/Observer/Observer_Principal.h"
+#include "Ejemplo/Builder/Builder_Principal.h"
+#include "Ejemplo/Singleton/Singleton_Principal.h"
 
 
 APVZ_USFX_LAB02GameModeBase::APVZ_USFX_LAB02GameModeBase()
@@ -66,7 +69,12 @@ void APVZ_USFX_LAB02GameModeBase::EjemploPatrones()
 
 	//ADecorator_Principal* Decorator = GetWorld()->SpawnActor<ADecorator_Principal>(ADecorator_Principal::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
 
-	AObserver_Principal* Observer = GetWorld()->SpawnActor<AObserver_Principal>(AObserver_Principal::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
+	//AObserver_Principal* Observer = GetWorld()->SpawnActor<AObserver_Principal>(AObserver_Principal::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
+
+	//ABuilder_Principal* Builder = GetWorld()->SpawnActor<ABuilder_Principal>(ABuilder_Principal::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
+
+	//ASingleton_Principal* Singleton = GetWorld()->SpawnActor<ASingleton_Principal>(ASingleton_Principal::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
+
 
 }
 
@@ -83,6 +91,7 @@ void APVZ_USFX_LAB02GameModeBase::Patrones()
 
 	//AObserver_Main* Observer = GetWorld()->SpawnActor<AObserver_Main>(AObserver_Main::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
 
+	AAdapter_Main* Adapter = GetWorld()->SpawnActor<AAdapter_Main>(AAdapter_Main::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
 
 
 }
