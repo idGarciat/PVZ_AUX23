@@ -5,6 +5,11 @@
 #include "ZombieAbanderado.h"
 #include "Publicador.h"
 
+#include <PVZ_USFX_LAB02/PVZ_USFX_LAB02GameModeBase.h>
+#include <PVZ_USFX_LAB02/ZombieComun.h>
+
+
+
 // Sets default values
 AZombieAnsioso::AZombieAnsioso()
 {
@@ -43,6 +48,7 @@ void AZombieAnsioso::Actualizar(APublicador* Publicador)
 {
 	//Ejecuta su rutina o acciones
 	Tranformacion();
+
 
 }
 

@@ -29,9 +29,9 @@ void AObserver_Principal::BeginPlay()
 
 	//Cambia el estado del zombie abanderado, para que los suscriptores ejecuten su rutina
 
-	ZombieAbanderado->DefinirEstado("Calmado");
+	//ZombieAbanderado->DefinirEstado("Calmado");
 
-	ZombieAbanderado->DefinirEstado("Enojado");
+	//ZombieAbanderado->DefinirEstado("Enojado");
 
 	ZombieAbanderado->DefinirEstado("Frenetico");
 
