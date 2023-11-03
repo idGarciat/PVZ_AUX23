@@ -85,6 +85,7 @@ void APVZ_USFX_LAB02GameModeBase::EjemploPatrones()
 	//AFacade_Principal* Facade = GetWorld()->SpawnActor<AFacade_Principal>(AFacade_Principal::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
 
 	AStrategy_Principal* Strategy = GetWorld()->SpawnActor<AStrategy_Principal>(AStrategy_Principal::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
+
 }
 
 void APVZ_USFX_LAB02GameModeBase::Patrones()
