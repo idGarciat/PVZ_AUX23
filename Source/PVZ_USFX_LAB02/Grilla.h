@@ -48,6 +48,8 @@ protected:
 
 	class UMaterial* MaterialGrilla2 = LoadObject<UMaterial>(nullptr, TEXT("Material'/Game/StarterContent/Materials/M_Concrete_Tiles.M_Concrete_Tiles'"));
 
+	//definir un mesh globalmente
+	class UStaticMesh* MeshGrilla2 = LoadObject<UStaticMesh>(nullptr, TEXT("StaticMesh'/Game/StarterContent/Shapes/Shape_Trim_90_In.Shape_Trim_90_In'"));
 
 public:
 	// Sets default values for this actor's properties
@@ -65,5 +67,7 @@ public:
 
 	UPROPERTY()
 	class AGridaManager* OwningGrid;
+
+
 
 };

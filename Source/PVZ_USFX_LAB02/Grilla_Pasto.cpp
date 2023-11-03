@@ -16,6 +16,7 @@ AGrilla_Pasto::AGrilla_Pasto()
 	TipoGrilla = EHexTileType::PASTO;
 
 	MeshGrilla->SetMaterial(0, MaterialGrilla1);
+
 }
 
 
