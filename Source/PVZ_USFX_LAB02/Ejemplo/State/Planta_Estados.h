@@ -70,5 +70,8 @@ public:
 	//Refill the dollars by the passed amount
 	void CurarVida(int mycontador);
 
+	
+
+
 
 };

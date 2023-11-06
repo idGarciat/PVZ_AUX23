@@ -33,21 +33,22 @@ void AEstado2Vida::Atacar()
 
 void AEstado2Vida::Defender()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, TEXT("Atacar Estado2Vida"));
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, TEXT("Defender Estado2Vida"));
 	PlantaEstados->EmitirMensaje();
+	PlantaEstados->DefinirEstado(PlantaEstados->GetEstado1Vida());
 
 }
 
 void AEstado2Vida::Recolectar()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, TEXT("Atacar Estado2Vida"));
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, TEXT("Recolectar Estado2Vida"));
 	PlantaEstados->DefinirEstado(PlantaEstados->GetEstado3Vida());
 
 }
 
 FString AEstado2Vida::ToString()
 {
-	return "Realizando acciones";
+	return "Estado 2";
 }
 
 void AEstado2Vida::DefinirPlanta_Estados(APlanta_Estados* PlantaDeEstados)

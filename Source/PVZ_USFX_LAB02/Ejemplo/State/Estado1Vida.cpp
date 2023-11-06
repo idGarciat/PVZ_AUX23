@@ -47,7 +47,7 @@ void AEstado1Vida::Recolectar()
 
 FString AEstado1Vida::ToString()
 {
-	return "Realizando acciones";
+	return "Estado 1";
 
 }
 

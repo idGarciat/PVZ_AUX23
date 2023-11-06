@@ -25,13 +25,17 @@ void AState_Principal::BeginPlay()
 	PlantaEstados->Atacar();
 	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Estado Actual: %s"), *PlantaEstados->GetEstado()->ToString()));
 
+
+	PlantaEstados->EmitirMensaje();
+
 	PlantaEstados->Defender();
 	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Estado Actual: %s"), *PlantaEstados->GetEstado()->ToString()));
 
 	PlantaEstados->Recolectar();
 	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Estado Actual: %s"), *PlantaEstados->GetEstado()->ToString()));
 
-
+	PlantaEstados->Recolectar();
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Estado Actual: %s"), *PlantaEstados->GetEstado()->ToString()));
 }
 
 // Called every frame

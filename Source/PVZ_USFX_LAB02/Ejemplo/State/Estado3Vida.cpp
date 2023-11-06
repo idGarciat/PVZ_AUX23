@@ -28,26 +28,29 @@ void AEstado3Vida::Tick(float DeltaTime)
 
 void AEstado3Vida::Atacar()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, TEXT("Atacar Estado2Vida"));
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, TEXT("Atacar Estado3Vida"));
 	PlantaEstados->EmitirMensaje();
+	PlantaEstados->DefinirEstado(PlantaEstados->GetEstado2Vida());
 
 }
 
 void AEstado3Vida::Defender()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, TEXT("Atacar Estado2Vida"));
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, TEXT("Defender Estado3Vida"));
+	//PlantaEstados->EmitirMensaje();
 
 }
 
 void AEstado3Vida::Recolectar()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, TEXT("Atacar Estado2Vida"));
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, TEXT("Recolectar Estado3Vida"));
+	//PlantaEstados->EmitirMensaje();
 
 }
 
 FString AEstado3Vida::ToString()
 {
-	return "Realizando acciones";
+	return "Estado 3";
 }
 
 void AEstado3Vida::DefinirPlanta_Estados(APlanta_Estados* PlantaDeEstados)

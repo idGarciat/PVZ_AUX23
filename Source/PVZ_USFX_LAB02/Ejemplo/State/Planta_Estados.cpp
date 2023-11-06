@@ -26,6 +26,17 @@ void APlanta_Estados::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+
+	//if (Contador <= 3) {
+	//	Estado = Estado3Vida;
+	//}
+	//if (Contador <= 2) {
+	//	Estado = Estado2Vida;
+	//}
+	//if (Contador <= 1) {
+	//	Estado = Estado1Vida;
+	//}
+
 }
 
 void APlanta_Estados::Inicializar(int NumeroDeVidas)
@@ -43,16 +54,16 @@ void APlanta_Estados::Inicializar(int NumeroDeVidas)
 	//Set the amount of dollars
 	Contador = NumeroDeVidas;
 	//If its greater than 0, set the current State to No Coin State
-	if (NumeroDeVidas == 3) {
+
+	if (NumeroDeVidas <= 3) {
 		Estado = Estado3Vida;
 	}
-	if (NumeroDeVidas == 2) {
+	if (NumeroDeVidas <= 2) {
 		Estado = Estado2Vida;
 	}
-	if (NumeroDeVidas == 1) {
+	if (NumeroDeVidas <= 1) {
 		Estado = Estado1Vida;
 	}
-
 }
 
 void APlanta_Estados::Atacar()
@@ -72,11 +83,15 @@ void APlanta_Estados::Recolectar()
 
 void APlanta_Estados::EmitirMensaje()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, TEXT("Tienes Vidas"));
-	//If the Slot Machine still have some dollars, decrease them by 50
-	if (Contador != 0) {
-		Contador = Contador - 1;
-	}
+	FString myString = "Tienes Vidas ";
+	myString += FString::FromInt(Contador);
+
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, *myString);
+
+	Contador--;
+
+	//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, *myString);
+
 
 }
 
