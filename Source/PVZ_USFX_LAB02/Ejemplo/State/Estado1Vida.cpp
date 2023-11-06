@@ -42,7 +42,10 @@ void AEstado1Vida::Recolectar()
 	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, TEXT("Recolectar Estado1Vida"));
 
 	//Set the state to "No Coin State"
+	PlantaEstados->CurarVida(1);
 	PlantaEstados->DefinirEstado(PlantaEstados->GetEstado2Vida());
+
+
 }
 
 FString AEstado1Vida::ToString()

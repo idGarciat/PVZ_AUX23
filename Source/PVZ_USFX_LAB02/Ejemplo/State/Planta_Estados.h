@@ -36,6 +36,7 @@ private:
 
 	//The State of this Slot Machine
 	IEstados* Estado;
+
 	//The amount of Dollars of this Slot Machine
 	int Contador = 0;
 
@@ -60,13 +61,16 @@ public:
 
 	//Get the String of the current State
 	FString GetEstadoActual();
+
 	//Set the Current State with the passed one
 	void DefinirEstado(IEstados* myEstado);
 
 	//Emit Dollars from this Slot Machine
 	void EmitirMensaje();
+
 	//Get the amount of dollars in this Slot Machine
 	int GetContador();
+
 	//Refill the dollars by the passed amount
 	void CurarVida(int mycontador);
 

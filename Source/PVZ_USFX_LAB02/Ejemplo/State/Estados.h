@@ -31,4 +31,5 @@ public:
 	virtual FString ToString() = 0;
 
 	virtual void DefinirPlanta_Estados(class APlanta_Estados* PlantaEstados) = 0;
+
 };

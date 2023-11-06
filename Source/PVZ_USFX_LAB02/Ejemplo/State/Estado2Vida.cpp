@@ -42,6 +42,7 @@ void AEstado2Vida::Defender()
 void AEstado2Vida::Recolectar()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, TEXT("Recolectar Estado2Vida"));
+	PlantaEstados->CurarVida(1);
 	PlantaEstados->DefinirEstado(PlantaEstados->GetEstado3Vida());
 
 }

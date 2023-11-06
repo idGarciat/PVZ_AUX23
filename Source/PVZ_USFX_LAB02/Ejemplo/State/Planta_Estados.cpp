@@ -136,5 +136,7 @@ void APlanta_Estados::CurarVida(int mycontador)
 	Contador += mycontador;
 	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Las vidas de la planta ahora son: % i"), Contador));
 	//Then execute the Restock Dollars routine based on the current state
-	Estado->Recolectar();
+
+	//Estado->Recolectar();
+
 }

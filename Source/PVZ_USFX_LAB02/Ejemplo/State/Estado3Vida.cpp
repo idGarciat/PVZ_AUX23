@@ -29,7 +29,9 @@ void AEstado3Vida::Tick(float DeltaTime)
 void AEstado3Vida::Atacar()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, TEXT("Atacar Estado3Vida"));
+
 	PlantaEstados->EmitirMensaje();
+
 	PlantaEstados->DefinirEstado(PlantaEstados->GetEstado2Vida());
 
 }

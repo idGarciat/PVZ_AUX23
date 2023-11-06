@@ -21,12 +21,12 @@ void AState_Principal::BeginPlay()
 	APlanta_Estados* PlantaEstados = GetWorld()->SpawnActor<APlanta_Estados>(APlanta_Estados::StaticClass());
 
 	PlantaEstados->Inicializar(3);
-	//Insert coin and Pull the lever
+
+	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Estado Actual: %s"), *PlantaEstados->GetEstado()->ToString()));
+
 	PlantaEstados->Atacar();
 	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Estado Actual: %s"), *PlantaEstados->GetEstado()->ToString()));
 
-
-	PlantaEstados->EmitirMensaje();
 
 	PlantaEstados->Defender();
 	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Estado Actual: %s"), *PlantaEstados->GetEstado()->ToString()));
@@ -36,6 +36,10 @@ void AState_Principal::BeginPlay()
 
 	PlantaEstados->Recolectar();
 	GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Estado Actual: %s"), *PlantaEstados->GetEstado()->ToString()));
+
+
+	//PlantaEstados->DefinirEstado(PlantaEstados->GetEstado2Vida());
+	//GEngine->AddOnScreenDebugMessage(-1, 15.f, FColor::Yellow, FString::Printf(TEXT("Estado Actual: %s"), *PlantaEstados->GetEstado()->ToString()));
 }
 
 // Called every frame
