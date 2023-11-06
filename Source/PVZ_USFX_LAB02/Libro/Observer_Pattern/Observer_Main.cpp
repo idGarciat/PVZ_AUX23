@@ -3,6 +3,7 @@
 
 #include "Observer_Main.h"
 #include "ClockTower.h"
+#include "FreakyAllenSon.h"
 #include "FreakyAllen.h"
 
 // Sets default values
@@ -21,9 +22,13 @@ void AObserver_Main::BeginPlay()
 	//Spawn the Clock Tower
 	AClockTower* ClockTower = GetWorld()->SpawnActor<AClockTower>(AClockTower::StaticClass());
 	//Spawn the first Subscriber and set its Clock Tower
-	AFreakyAllen* FreakyAllen = GetWorld()->SpawnActor<AFreakyAllen>(AFreakyAllen::StaticClass());
+	//AFreakyAllen* FreakyAllen = GetWorld()->SpawnActor<AFreakyAllen>(AFreakyAllen::StaticClass());
 
-	FreakyAllen->SetClockTower(ClockTower);
+	AFreakyAllenSon* FreakyAllenSon = GetWorld()->SpawnActor<AFreakyAllenSon>(AFreakyAllenSon::StaticClass());
+
+	FreakyAllenSon->SetClockTower(ClockTower);
+
+	//FreakyAllen->SetClockTower(ClockTower);
 
 	//Change the time of the Clock Tower, so the Subscribers can execute their own routine
 	ClockTower->SetTimeOfDay("Morning");

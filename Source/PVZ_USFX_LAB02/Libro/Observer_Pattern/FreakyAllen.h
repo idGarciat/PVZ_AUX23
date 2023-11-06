@@ -32,7 +32,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-private:
+protected:
 	//The Clock Tower of this Subscriber
 	UPROPERTY()
 	AClockTower* ClockTower;

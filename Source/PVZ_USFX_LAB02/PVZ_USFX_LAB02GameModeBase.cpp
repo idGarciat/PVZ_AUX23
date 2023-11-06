@@ -31,6 +31,7 @@
 #include "Libro/Adapter_Pattern/Adapter_Main.h"
 #include "Libro/Facade_Pattern/StarShipFacade_Main.h"
 #include "Libro/Strategy_Pattern/Strategy_Main.h"
+#include "Libro/State_Pattern/State_Main.h"
 
 #include "Ejemplo/Factory_Method/FactoryMethod_Principal.h"
 #include "Ejemplo/Decorator/Decorator_Principal.h"
@@ -40,6 +41,7 @@
 #include "Ejemplo/Adapter/Adapter_Principal.h"
 #include "Ejemplo/Facade/Facade_Principal.h"
 #include "Ejemplo/Strategy/Strategy_Principal.h"
+#include "Ejemplo/State/State_Principal.h"
 
 
 APVZ_USFX_LAB02GameModeBase::APVZ_USFX_LAB02GameModeBase()
@@ -84,8 +86,9 @@ void APVZ_USFX_LAB02GameModeBase::EjemploPatrones()
 
 	//AFacade_Principal* Facade = GetWorld()->SpawnActor<AFacade_Principal>(AFacade_Principal::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
 
-	AStrategy_Principal* Strategy = GetWorld()->SpawnActor<AStrategy_Principal>(AStrategy_Principal::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
+	//AStrategy_Principal* Strategy = GetWorld()->SpawnActor<AStrategy_Principal>(AStrategy_Principal::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
 
+	AState_Principal* State = GetWorld()->SpawnActor<AState_Principal>(AState_Principal::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
 }
 
 void APVZ_USFX_LAB02GameModeBase::Patrones()
@@ -107,6 +110,7 @@ void APVZ_USFX_LAB02GameModeBase::Patrones()
 
 	//AStrategy_Main* Strategy = GetWorld()->SpawnActor<AStrategy_Main>(AStrategy_Main::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
 
+	//AState_Main* State = GetWorld()->SpawnActor<AState_Main>(AState_Main::StaticClass(), FVector(0, 0, 0), FRotator::ZeroRotator);
 
 }
 
